@@ -1,0 +1,175 @@
+{
+  "prototype": true,
+  "synthetic": true,
+  "policy": "All duplicate-ID records are quarantined, not first-wins. No currency conversion. Exceptions remain visible. Review exceptions before acting on an order status.",
+  "input_counts": {
+    "orders": 7,
+    "payments": 9
+  },
+  "order_results": [
+    {
+      "order_id": "DEMO-001",
+      "currency": "CNY",
+      "expected": "100.00",
+      "received": "100.00",
+      "difference_received_minus_expected": "0.00",
+      "status": "matched",
+      "counted_payment_ids": [
+        "PAY-001",
+        "PAY-002"
+      ]
+    },
+    {
+      "order_id": "DEMO-002",
+      "currency": "CNY",
+      "expected": "200.00",
+      "received": "180.00",
+      "difference_received_minus_expected": "-20.00",
+      "status": "amount_difference",
+      "counted_payment_ids": [
+        "PAY-003"
+      ]
+    },
+    {
+      "order_id": "DEMO-003",
+      "currency": "USD",
+      "expected": "50.00",
+      "received": "0",
+      "difference_received_minus_expected": "-50.00",
+      "status": "missing_payment",
+      "counted_payment_ids": []
+    },
+    {
+      "order_id": "DEMO-004",
+      "currency": "EUR",
+      "expected": "80.00",
+      "received": "0",
+      "difference_received_minus_expected": "-80.00",
+      "status": "missing_payment",
+      "counted_payment_ids": []
+    }
+  ],
+  "exceptions": [
+    {
+      "source": "orders",
+      "index": 4,
+      "reasons": [
+        "duplicate_order_id"
+      ],
+      "record": {
+        "order_id": "DEMO-DUP",
+        "amount": "10.00",
+        "currency": "CNY"
+      }
+    },
+    {
+      "source": "orders",
+      "index": 5,
+      "reasons": [
+        "duplicate_order_id"
+      ],
+      "record": {
+        "order_id": "DEMO-DUP",
+        "amount": "15.00",
+        "currency": "CNY"
+      }
+    },
+    {
+      "source": "orders",
+      "index": 6,
+      "reasons": [
+        "unsupported_currency"
+      ],
+      "record": {
+        "order_id": "DEMO-UNSUPPORTED",
+        "amount": "5.00",
+        "currency": "ZZZ"
+      }
+    },
+    {
+      "source": "payments",
+      "index": 3,
+      "reasons": [
+        "currency_mismatch"
+      ],
+      "record": {
+        "payment_id": "PAY-004",
+        "order_id": "DEMO-003",
+        "amount": "50.00",
+        "currency": "CNY"
+      }
+    },
+    {
+      "source": "payments",
+      "index": 4,
+      "reasons": [
+        "duplicate_payment_id"
+      ],
+      "record": {
+        "payment_id": "PAY-DUP",
+        "order_id": "DEMO-004",
+        "amount": "80.00",
+        "currency": "EUR"
+      }
+    },
+    {
+      "source": "payments",
+      "index": 5,
+      "reasons": [
+        "duplicate_payment_id"
+      ],
+      "record": {
+        "payment_id": "PAY-DUP",
+        "order_id": "DEMO-004",
+        "amount": "80.00",
+        "currency": "EUR"
+      }
+    },
+    {
+      "source": "payments",
+      "index": 6,
+      "reasons": [
+        "unknown_order"
+      ],
+      "record": {
+        "payment_id": "PAY-005",
+        "order_id": "DEMO-NOT-FOUND",
+        "amount": "10.00",
+        "currency": "CNY"
+      }
+    },
+    {
+      "source": "payments",
+      "index": 7,
+      "reasons": [
+        "invalid_amount"
+      ],
+      "record": {
+        "payment_id": "PAY-006",
+        "order_id": "DEMO-002",
+        "amount": "NaN",
+        "currency": "CNY"
+      }
+    },
+    {
+      "source": "payments",
+      "index": 8,
+      "reasons": [
+        "unsupported_currency",
+        "currency_mismatch"
+      ],
+      "record": {
+        "payment_id": "PAY-007",
+        "order_id": "DEMO-002",
+        "amount": "20.00",
+        "currency": "ZZZ"
+      }
+    }
+  ],
+  "summary": {
+    "matched": 1,
+    "amount_difference": 1,
+    "missing_payment": 2,
+    "exception_records": 9
+  }
+}

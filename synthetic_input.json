@@ -1,0 +1,24 @@
+{
+  "synthetic": true,
+  "description": "Entirely invented sales demonstration. Not customer data or a delivered client project.",
+  "orders": [
+    {"order_id": "DEMO-001", "amount": "100.00", "currency": "CNY"},
+    {"order_id": "DEMO-002", "amount": "200.00", "currency": "CNY"},
+    {"order_id": "DEMO-003", "amount": "50.00", "currency": "USD"},
+    {"order_id": "DEMO-004", "amount": "80.00", "currency": "EUR"},
+    {"order_id": "DEMO-DUP", "amount": "10.00", "currency": "CNY"},
+    {"order_id": "DEMO-DUP", "amount": "15.00", "currency": "CNY"},
+    {"order_id": "DEMO-UNSUPPORTED", "amount": "5.00", "currency": "ZZZ"}
+  ],
+  "payments": [
+    {"payment_id": "PAY-001", "order_id": "DEMO-001", "amount": "40.00", "currency": "CNY"},
+    {"payment_id": "PAY-002", "order_id": "DEMO-001", "amount": "60.00", "currency": "CNY"},
+    {"payment_id": "PAY-003", "order_id": "DEMO-002", "amount": "180.00", "currency": "CNY"},
+    {"payment_id": "PAY-004", "order_id": "DEMO-003", "amount": "50.00", "currency": "CNY"},
+    {"payment_id": "PAY-DUP", "order_id": "DEMO-004", "amount": "80.00", "currency": "EUR"},
+    {"payment_id": "PAY-DUP", "order_id": "DEMO-004", "amount": "80.00", "currency": "EUR"},
+    {"payment_id": "PAY-005", "order_id": "DEMO-NOT-FOUND", "amount": "10.00", "currency": "CNY"},
+    {"payment_id": "PAY-006", "order_id": "DEMO-002", "amount": "NaN", "currency": "CNY"},
+    {"payment_id": "PAY-007", "order_id": "DEMO-002", "amount": "20.00", "currency": "ZZZ"}
+  ]
+}
